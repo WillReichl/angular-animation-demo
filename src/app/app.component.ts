@@ -4,7 +4,8 @@ import {
   state,
   style,
   transition,
-  animate
+  animate,
+  keyframes
 } from '@angular/animations';
 
 @Component({
@@ -84,10 +85,58 @@ import {
         animate(300)
       ]),
       transition('* => void', [
-        animate(300, style({
-          opacity: 0, // fully visible, not transparent
-          transform: 'translateX(100px)'
-        }))
+        animate(
+          300,
+          style({
+            opacity: 0, // fully visible, not transparent
+            transform: 'translateX(100px)'
+          })
+        )
+      ])
+    ]),
+    trigger('list2', [
+      state(
+        'in',
+        style({
+          opacity: 1, // fully visible, not transparent
+          transform: 'translateX(0)'
+        })
+      ),
+      transition('void => *', [
+        animate(
+          1000,
+          keyframes([
+            style({
+              opacity: 0,
+              transform: 'translateX(-100px)',
+              offset: 0
+            }),
+            style({
+              transform: 'translateX(-50px)',
+              opacity: 0.5,
+              offset: 0.3
+            }),
+            style({
+              transform: 'translateX(-20px)',
+              opacity: 0.8,
+              offset: 0.8
+            }),
+            style({
+              transform: 'translateX(0px)',
+              opacity: 1,
+              offset: 1
+            })
+          ])
+        )
+      ]),
+      transition('* => void', [
+        animate(
+          300,
+          style({
+            opacity: 0, // fully visible, not transparent
+            transform: 'translateX(100px)'
+          })
+        )
       ])
     ])
   ]
