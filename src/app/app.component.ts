@@ -171,4 +171,12 @@ export class AppComponent {
   onDelete(item) {
     this.list = this.list.filter(x => x !== item);
   }
+
+  animationStarted(event) {
+    console.log(event);
+  }
+
+  animationEnded(event) {
+    console.log(event);
+  }
 }
